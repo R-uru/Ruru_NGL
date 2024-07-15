@@ -318,20 +318,13 @@ $(document).ready(function () {
     // DICE QUESTIONS
     const APP_CDN_BASE_URL = "https://cdn.simplelocalize.io/57157aec81d54cb6b2a43f8b34a61d47/_production/";
     const userLanguage = $("meta[name='user:language']").attr("content") || 'en';
-    let randomQuestions = [
-        "What is your favorite color?",
-        "Where did you go to school?",
-        "What is your dream job?",
-        "Do you have any pets?",
-        "What is your favorite book?"
-        // Add more questions as needed
-    ];
+    let randomQuestions = []
 
     $.get(APP_CDN_BASE_URL + userLanguage, function (data) {
         const fakeQuestionKeys = Object.keys(data).filter(key => key.startsWith('FAKE_QUESTIONS.'))
         randomQuestions = fakeQuestionKeys.map(key => data[key])
     });
-    //Rurusama
+
 
     $('.dice-button').click(function (e) {
         // Set textarea text to a random question

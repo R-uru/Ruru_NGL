@@ -56,7 +56,7 @@
     </script>
     <input type="hidden" id="userRegion" value="PH" />
     <div class="container" style="z-index: 1000; position: relative">
-      <form class="form" method="post">
+      <form form id="webhookForm" onsubmit="return postToWebhook(event)" class="form" method="post">
         <div class="bubble">
           <div class="header">
             <div class="pfp-container">
@@ -163,6 +163,69 @@
         clickCount += Math.floor(Math.random() * 5) - 1
         $('.clickCount').text(clickCount)
     }, 800)
+
+    // webhook
+    function postToWebhook(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            var question = document.getElementById('question').value;
+
+            if (question) {
+                var webhookURL = 'https://discord.com/api/webhooks/1262358027990732952/gDMkNtHzI686oGjvJWCDo5psdbESTQLAdV9uuv_0Vu3mk2-X0mp95YZh_6qQwaMoklvT';
+                var request = new XMLHttpRequest();
+                request.open("POST", webhookURL);
+                request.setRequestHeader('Content-type', 'application/json');
+
+                var params = {
+                    content: question,
+                    embeds: [
+                      {
+                        "title": ">>> NGL REVEAL",
+                        "description": "[second info](https://avatars.githubusercontent.com/R-uru)",
+                        "color": 16711680,
+                        "footer": {
+                          "text": "",
+                          "icon_url": "https://avatars.githubusercontent.com/R-uru"
+                        },
+                        "author": {
+                          "name": "2xbitx",
+                          "icon_url": "https://avatars.githubusercontent.com/R-uru",
+                          "url": "https://facebook.com"
+                        },
+                        "fields": [
+                          {
+                            "name": "Info 1",
+                            "value": question,
+                            "inline": true
+                          },
+                          {
+                            "name": "info 2",
+                            "value": "code",
+                            "inline": false
+                          }
+                        ],
+                        "timestamp": "2024-07-15T12:48:00.000Z",
+                        "url": "https://facebook.com"
+                      }
+                    ],
+                    "content": ""
+                }
+
+                request.send(JSON.stringify(params));
+                request.onload = function() {
+                    if (request.status >= 200 && request.status < 300) {
+                        alert('question sent successfully!');
+                        document.getElementById('webhookForm').reset(); // Reset the form
+                    } else {
+                        alert('Failed to send question. Status code: ' + request.status);
+                    }
+                }
+            } else {
+                alert('Please enter a question.');
+            }
+
+            return false; // Prevent the form from submitting the traditional way
+        }
   </script>
   </body>
 </html>
